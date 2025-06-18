@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@theme {
+  --font-primary: "Host Grotesk", sans-serif;
+  --font-secondary: "GeneralSans", sans-serif;
+  --animate-slide: slide 3s linear infinite;
+  @keyframes slide {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
+.trims-text {
+  text-box-trim: trim-start;
+  text-box-edge: cap alphabetic;
+
+  color: #ffffffe4;
+}

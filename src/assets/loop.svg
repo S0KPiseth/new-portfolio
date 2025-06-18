@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="82 82 137 137" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  <ellipse rx="45.264317" ry="45.264317" transform="translate(127.367842 172.632159)" fill="none" stroke="#ffffff"/>
+  <ellipse rx="45.264317" ry="45.264317" transform="translate(172.632159 172.632159)" fill="none" stroke="#ffffff"/>
+  <ellipse rx="45.264317" ry="45.264317" transform="translate(172.632159 127.367841)" fill="none" stroke="#ffffff"/>
+  <ellipse rx="45.264317" ry="45.264317" transform="translate(127.367842 127.367841)" fill="none" stroke="#ffffff"/>
+  <rect width="96" height="96" transform="translate(100.605726 106.552862)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon fill="#ffffff" points="0,-53.443609 46.283523,26.721804 -46.283523,26.721804" transform="matrix(.087767 0 0 0.067477 100.605726 172.11829)" stroke-width="0"/>
+  <polygon fill="#ffffff" points="0,-53.443609 46.283523,26.721804 -46.283523,26.721804" transform="matrix(0 -.087767 0.067477 0 173.533712 202.465249)" stroke-width="0"/>
+  <polygon fill="#ffffff" points="0,-53.443609 46.283523,26.721804 -46.283523,26.721804" transform="matrix(-.087767 0 0 -.067477 196.690248 126.466288)" stroke-width="0"/>
+  <polygon fill="#ffffff" points="0,-53.443609 46.283523,26.721804 -46.283523,26.721804" transform="matrix(0 0.087767 -.067477 0 123.761627 106.552862)" stroke-width="0"/>
+</svg>
