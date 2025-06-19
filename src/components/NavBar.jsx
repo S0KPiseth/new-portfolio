@@ -5,6 +5,7 @@ import Flip from "gsap/Flip";
 import { createElement, useRef } from "react";
 
 export default function NavBar() {
+  //need to fix as the scroll limit
   const container = useRef();
   useGSAP(() => {
     if (!container.current) return;
@@ -12,9 +13,9 @@ export default function NavBar() {
 
     const navLinks = container.current.querySelectorAll(".NavLinks");
     // const menuBtn = document.querySelector(".menuBtn");
-
+    const scrollLimit = window.innerHeight + 50;
     const handleScroll = () => {
-      if (window.scrollY > 20 && !isHidden) {
+      if (window.scrollY > scrollLimit && !isHidden) {
         isHidden = true;
         const state = Flip.getState(container.current);
 
@@ -40,7 +41,7 @@ export default function NavBar() {
         container.current.classList.remove("left-[50%]");
 
         Flip.from(state, { duration: 1, ease: "power1.inOut", scale: true });
-      } else if (window.scrollY === 0 && isHidden) {
+      } else if (window.scrollY === window.innerHeight && isHidden) {
         isHidden = false;
         const state = Flip.getState(container.current);
 
