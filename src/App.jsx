@@ -10,14 +10,53 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useRef, useState } from "react";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText);
 
 function App() {
   const navRef = useRef(null);
   const contentRef = useRef(null);
   const nameRef = useRef(null);
   const hanumanRef = useRef(null);
+
+  const skillScroller = () => {
+    const specializationArray = gsap.utils.toArray(".languageHeader");
+    ScrollSmoother.create({
+      wrapper: "#wrapper",
+      content: "#content",
+      smooth: 0.8,
+    });
+
+    const descriptionHeight = document.querySelector(".techSectDescription").offsetHeight;
+    const childHeights = specializationArray.map((e) => e.children[0].offsetHeight);
+
+    specializationArray.forEach((e, index) => {
+      ScrollTrigger.create({
+        trigger: index === 0 ? ".techSectDescription" : e,
+        start: index === 0 ? "center top" : `top ${index * childHeights[index - 1] + descriptionHeight / 2}px`,
+        endTrigger: ".tech",
+        end: "bottom bottom",
+        pin: index === 0 ? e : true,
+        pinSpacing: index === specializationArray.length - 1 ? true : false,
+      });
+    });
+
+    gsap.to(".techDes", {
+      scrollTrigger: {
+        trigger: ".techSectDescription",
+        start: "top top",
+        endTrigger: specializationArray[0],
+        end: `top ${specializationArray[0].children[0].offsetHeight}px`,
+        scrub: 0.5,
+
+        // markers: true,
+      },
+
+      opacity: "0",
+      y: "-100px",
+    });
+  };
 
   useGSAP(() => {
     gsap.set(".hanuman", {
@@ -50,75 +89,66 @@ function App() {
               duration: 1,
               ease: "power1.inOut",
               onComplete: () => {
-                gsap.utils.toArray(".letter").forEach((el, i) => {
-                  gsap.fromTo(
-                    el,
-                    { opacity: 0, rotateX: 90, scale: 0.9 },
-                    {
-                      opacity: 1,
-                      rotateX: 0,
-                      scale: 1,
-                      duration: 0.3 + i * 0.1,
-                      ease: "power2.out",
-                    }
-                  );
-                });
-                //scroll animation here is not want i want
-                // ScrollTrigger.create({
-                //   trigger: nameRef.current,
-                //   start: "center center",
-                //   endTrigger: ".homePage",
-                //   end: "bottom bottom",
-                //   pin: ".homePage",
-                //   markers: true,
-                // });
-                gsap.to(nameRef.current, {
-                  y: `${document.querySelector(".homePage").getBoundingClientRect().bottom - nameRef.current.getBoundingClientRect().bottom}px`,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: ".homePage",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true,
-                    pin: true,
-                    once: true,
-                    anticipatePin: 1,
-                    onLeave: (self) => {
-                      const state = Flip.getState(nameRef.current);
-                      if (nameRef.current.parentNode != document.querySelector(".originalContainer")) {
-                        document.querySelector(".originalContainer").appendChild(nameRef.current);
-                        nameRef.current.style.transform = "translate(0px, 0px)";
-                        const minScroll = window.innerHeight;
-                        window.addEventListener("scroll", () => {
-                          if (window.scrollY < minScroll) {
-                            window.scrollTo(0, minScroll);
-                          }
-                        });
-                        navRef.current.style.display = "block";
-                      }
-                    },
-                  },
-                  onComplete: () => {
-                    document.querySelector(".landingElements").classList.remove("hidden");
-                  },
-                  onStart: () => {
-                    document.querySelector(".homePage").appendChild(nameRef.current);
-                    nameRef.current.classList.remove("absolute");
-                    document.querySelector(".homePage").classList.add("flex");
-                    document.querySelector(".homePage").classList.add("justify-center");
-                    document.querySelector(".homePage").classList.add("items-center");
-                    document.querySelector(".homePage").removeChild(document.getElementById("temp"));
-                  },
-                });
+                landingTl.fromTo(
+                  ".letter",
+                  { opacity: 0, rotateX: 90, scale: 0.9 },
+                  {
+                    opacity: 1,
+                    rotateX: 0,
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out",
+                    stagger: 0.1,
+                    onComplete: () => {
+                      document.querySelector(".homePage").appendChild(nameRef.current);
+                      const temp = document.getElementById("temp");
+                      temp.remove();
+                      const newState = Flip.getState(nameRef.current);
+                      const landingSection = document.querySelector(".landingElements");
+                      landingSection.classList.add("flex");
+                      landingSection.classList.remove("hidden");
+                      landingSection.querySelector(".originalContainer").appendChild(nameRef.current);
+                      nameRef.current.classList.remove("absolute");
+                      Flip.from(newState, {
+                        scale: true,
+                        duration: 1,
+                        ease: "power1.inOut",
 
-                contentRef.current.classList.remove("hidden");
+                        onStart: () => {
+                          let text = SplitText.create(".toBreveal", { type: "lines" });
+                          gsap.to(".toBreveal", { visibility: "visible" });
+                          gsap.to(navRef.current, {
+                            display: "block",
+                          });
+                          gsap.from(text.lines, {
+                            y: -100,
+                            autoAlpha: 0,
+                            stagger: 0.05,
+                          });
+                        },
+                        onComplete: () => {
+                          gsap.fromTo(
+                            ".landingVisual",
+                            {
+                              visibility: "invisible",
+                              scale: "0",
+                            },
+                            {
+                              visibility: "visible",
+                              scale: "1",
+                            }
+                          );
+                          contentRef.current.classList.remove("hidden");
+                          skillScroller();
+                        },
+                      });
+                    },
+                  }
+                );
               },
             });
           },
         });
-
-        // navRef.current.style.display = "block";
-        // nameRef.current.classList.remove("hidden");
         nameRef.current.classList.add("flex");
 
         return;
@@ -138,61 +168,6 @@ function App() {
       };
     }
     loadNextImage();
-
-    ScrollSmoother.create({
-      wrapper: "#wrapper",
-      content: "#content",
-      smooth: 0.8,
-    });
-    const specializationArray = gsap.utils.toArray(".languageHeader");
-    // ScrollSmoother.create({
-    //   wrapper: ".wrapper",
-    //   content: ".tech",
-    // });
-    // const bodyTimeline = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: document.body,
-    //     start: "top top",
-    //     end: "bottom bottom",
-    //     pin: ".headerNav",
-    //   },
-    // });
-    // ScrollTrigger.create({
-    //     trigger: ".techSectDescription",
-    //     start: `top ${index * e.children[0].offsetHeight}px`,
-    //     endTrigger: ".tech",
-    //     end: "bottom bottom",
-    //     pin: e,
-    //     pinSpacing: false,
-    //     markers: true,
-    //     pinnedContainer: ".tech",
-    //   })
-
-    specializationArray.forEach((e, index) => {
-      ScrollTrigger.create({
-        trigger: index === 0 ? ".techSectDescription" : e,
-        start: index === 0 ? "center top" : `top ${index * specializationArray[index - 1].children[0].getBoundingClientRect().height + document.querySelector(".techSectDescription").offsetHeight / 2}px`,
-        endTrigger: ".tech",
-        end: "bottom bottom",
-        pin: index === 0 ? e : true,
-        pinSpacing: index === specializationArray.length - 1 ? true : false,
-      });
-    });
-
-    gsap.to(".techDes", {
-      scrollTrigger: {
-        trigger: ".techSectDescription",
-        start: "top top",
-        endTrigger: specializationArray[0],
-        end: `top ${specializationArray[0].children[0].offsetHeight}px`,
-        scrub: 0.5,
-
-        // markers: true,
-      },
-
-      opacity: "0",
-      y: "-100px",
-    });
   }, []);
   return (
     <>
@@ -429,16 +404,16 @@ function App() {
                 <div className="invisible">
                   <NavBar />
                 </div>
-                <p className="font-secondary w-9/12 text-3xl uppercase p-2.5">Lorem ipsum dolor sit amet consectetur. Ultricies nibh curabitur tincidunt auctor gravida eget. Diam eget aliquet eget nulla tincidunt. Gravida phasellus nunc phasellus adipiscing eget.</p>
+                <p className="font-secondary w-9/12 text-3xl uppercase p-2.5 invisible toBreveal">Lorem ipsum dolor sit amet consectetur. Ultricies nibh curabitur tincidunt auctor gravida eget. Diam eget aliquet eget nulla tincidunt. Gravida phasellus nunc phasellus adipiscing eget.</p>
                 <div className="flex justify-end">
                   <div className="text-9xl flex flex-col items-center p-2.5">
-                    <p className='font-["Luxurious_Script"] '>web</p>
-                    <p className="font-secondary">
+                    <p className='font-["Luxurious_Script"] invisible toBreveal'>web</p>
+                    <p className="font-secondary invisible toBreveal">
                       dev<i>e</i>loper
                     </p>
                   </div>
                 </div>
-                <div className=" rounded-b-lg absolute w-74 aspect-video bg-[url('./image/travel.png')] bg-cover left-1/3 bottom-28 z-[-1]"></div>
+                <div className="invisible landingVisual rounded-b-lg absolute w-74 aspect-video bg-[url('./image/travel.png')] bg-cover left-1/3 bottom-28"></div>
                 <div className="grow flex justify-center w-screen originalContainer"></div>
               </div>
             </section>

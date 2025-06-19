@@ -5,7 +5,7 @@ export default function ValueCard(props) {
       <h2 className="text-5xl">Perfectionism</h2>
       <p className="font-secondary text-white opacity-60 text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repudiandae saepe, consequatur perspiciatis doloribus vitae nobis suscipit repellendus qui accusamus nam est amet ut soluta! Iure error rerum minima quis!</p>
       <div>
-        <img className="float-right w-1/4" src={loopSvg} alt="" />
+        <img className="float-right w-1/4" data-load-src={loopSvg} alt="" />
       </div>
     </div>
   );

@@ -13,9 +13,9 @@ export default function NavBar() {
 
     const navLinks = container.current.querySelectorAll(".NavLinks");
     // const menuBtn = document.querySelector(".menuBtn");
-    const scrollLimit = window.innerHeight + 50;
+
     const handleScroll = () => {
-      if (window.scrollY > scrollLimit && !isHidden) {
+      if (window.scrollY > 10 && !isHidden) {
         isHidden = true;
         const state = Flip.getState(container.current);
 
@@ -41,7 +41,7 @@ export default function NavBar() {
         container.current.classList.remove("left-[50%]");
 
         Flip.from(state, { duration: 1, ease: "power1.inOut", scale: true });
-      } else if (window.scrollY === window.innerHeight && isHidden) {
+      } else if (window.scrollY === 0 && isHidden) {
         isHidden = false;
         const state = Flip.getState(container.current);
 
