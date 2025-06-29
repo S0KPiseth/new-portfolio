@@ -41,6 +41,64 @@ export default function AboutPage() {
           },
         }
       );
+
+      gsap.fromTo(
+        ".valueCardHeader",
+        { opacity: 0 },
+        {
+          opacity: 1,
+
+          scrollTrigger: {
+            trigger: ".valueCardHeader",
+            start: "top 80%",
+            end: "bottom center",
+          },
+        }
+      );
+      let paraSplit;
+      SplitText.create(".valueParaGraph", {
+        type: "lines",
+        mask: "lines",
+
+        onSplit: (self) => {
+          paraSplit = gsap.from(self.lines, {
+            scrollTrigger: {
+              trigger: ".valueParaGraph",
+              start: "top 80%",
+              endTrigger: ".valueParaGraph",
+              end: "bottom center",
+            },
+            duration: 0.6,
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "expo.out",
+          });
+          return paraSplit;
+        },
+      });
+    });
+    const zoomTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".valueDiv",
+        start: "bottom bottom",
+        pin: true,
+        end: `+=${window.innerHeight * 1.3}`,
+        markers: true,
+        scrub: true,
+        pinSpacing: true,
+      },
+    });
+
+    zoomTl.set("#svg2", { color: "white" });
+
+    zoomTl.to({}, { duration: 0.2 });
+
+    zoomTl.to("#svg2", {
+      scale: 100,
+      transformOrigin: "center",
+      x: -100,
+      ease: "none",
     });
   }, []);
 

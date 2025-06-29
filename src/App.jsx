@@ -12,8 +12,9 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useRef, useState } from "react";
 import { SplitText } from "gsap/SplitText";
 import HanumanSvg from "./components/HanumanSvg";
+import MotionPathPlugin from "gsap/MotionPathPlugin";
 
-gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText);
+gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, MotionPathPlugin);
 
 function App() {
   const navRef = useRef(null);
