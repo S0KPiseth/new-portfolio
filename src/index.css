@@ -21,3 +21,18 @@
 *::-webkit-scrollbar {
   display: none;
 }
+.NavLinks {
+  @apply p-1 px-3;
+}
+.navSpacial {
+  @apply px-3;
+}
+.activeNav {
+  @apply bg-white text-black rounded-full p-1 px-3;
+}
+.word3 {
+  text-decoration: underline;
+}
+.word1 {
+  @apply pl-28;
+}

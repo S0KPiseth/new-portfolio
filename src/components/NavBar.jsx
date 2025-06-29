@@ -2,104 +2,81 @@ import { useGSAP } from "@gsap/react";
 import { Link } from "react-router";
 import gsap from "gsap";
 import Flip from "gsap/Flip";
-import { createElement, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function NavBar() {
-  //need to fix as the scroll limit
-  const container = useRef();
-  useGSAP(() => {
-    if (!container.current) return;
-    let isHidden = false;
-
-    const navLinks = container.current.querySelectorAll(".NavLinks");
-    // const menuBtn = document.querySelector(".menuBtn");
-
-    const handleScroll = () => {
-      if (window.scrollY > 10 && !isHidden) {
-        isHidden = true;
-        const state = Flip.getState(container.current);
-
-        navLinks.forEach((link) => container.current.removeChild(link));
-
-        const menuBtn = document.createElement("button");
-        menuBtn.className = "bg-white text-black p-1.5 px-4 rounded-full menuBtn";
-        menuBtn.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 0.637 0.637" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <path d="M0.6 0.112v0.075H0.037V0.112zM0.037 0.375h0.563V0.3H0.037zm0 0.188h0.563v-0.075H0.037z" fill="#000000"/>
-          </svg>`;
-        gsap.to(".willHidden", {
-          y: "-100px",
-          duration: 0.5,
-          ease: "power1.out",
-        });
-        container.current.appendChild(menuBtn);
-        container.current.classList.add("rounded-full");
-        container.current.classList.add("top-2.5");
-        container.current.classList.add("pl-3");
-        container.current.classList.add("right-[-50px]");
-        container.current.classList.remove("rounded-md");
-        container.current.classList.remove("translate-x-[-50%]");
-        container.current.classList.remove("left-[50%]");
-
-        Flip.from(state, { duration: 1, ease: "power1.inOut", scale: true });
-      } else if (window.scrollY === 0 && isHidden) {
-        isHidden = false;
-        const state = Flip.getState(container.current);
-
-        navLinks.forEach((link) => container.current.appendChild(link));
-        container.current.removeChild(document.querySelector(".menuBtn"));
-        container.current.classList.add("rounded-md");
-        container.current.classList.add("left-[50%]");
-        container.current.classList.add("translate-x-[-50%]");
-        container.current.classList.remove("pl-3");
-        container.current.classList.remove("rounded-full");
-        container.current.classList.remove("right-[-50px]");
-
-        Flip.from(state, {
-          duration: 1,
-          ease: "power1.inOut",
-          scale: true,
-          onComplete: () =>
-            gsap.to(".willHidden", {
-              y: "0px",
-              duration: 0.5,
-              ease: "power1.out",
-            }),
-        });
-      }
+  const [localTime, setLocalTime] = useState("");
+  //update time
+  useEffect(() => {
+    const setTimeId = setInterval(() => {
+      const date = new Date();
+      const timeString = date.toLocaleTimeString("en-US", { timeZone: "Asia/Phnom_Penh" });
+      setLocalTime(timeString);
+    }, 1000);
+    return () => {
+      clearInterval(setTimeId);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+  }, []);
 
   return (
-    <nav className="flex justify-between p-2.5 items-center w-full navBar h-16 nav order-1 relative z-[99]">
-      <div className="grow tex-left willHidden">
-        <p>Piseth SOK</p>
-        <p>@Ace</p>
+    <nav className="flex p-2.5 items-start w-full h-16 navBar nav order-1 relative z-[99] justify-center md:justify-evenly font-semibold font-[Geist] lg:text-[1vw]">
+      {/* Location */}
+      <div className="text-left uppercase hidden md:block md:w-1/6 lg:w-1/8 flex-1 invisible toBreveal">
+        <p>Phnom Penh</p>
+        <p>Cambodia</p>
       </div>
-      <ul className="bg-stone-400 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-10 backdrop-saturate-100 backdrop-contrast-100 z-99 absolute left-[50%] translate-x-[-50%] linkContainer gap-4 tex-left flex justify-center items-center p-2 px-3 rounded-md order-2" ref={container}>
-        <li className="activeNav">
-          <Link to="/" className="text-link" />
-          home
+
+      {/* Local Time */}
+      <div className="hidden md:block md:w-1/6 lg:w-1/8 flex-1 text-center invisible toBreveal">
+        <p>{localTime}</p>
+      </div>
+
+      {/* Gmail + Contact */}
+      <div className="hidden lg:flex items-center justify-center lg:w-1/5">
+        <div className="flex flex-col text-left invisible toBreveal">
+          <a href="mailto:piseth.sok.dev@gmail.com">piseth.sok.dev@gmail.com</a>
+          <a href="https://t.me/PisethS0K">+855 967317030</a>
+        </div>
+      </div>
+
+      <div className="h-full flex justify-center w-28 flex-shrink-0 originalContainer relative"></div>
+
+      {/* Catching Phrase */}
+      <div className="hidden lg:flex items-center justify-center lg:w-1/5">
+        <div className="flex flex-col text-center invisible toBreveal">
+          <p>You worry about the what and why.</p>
+          <p>I’ll handle the how.</p>
+        </div>
+      </div>
+
+      {/* IG */}
+      <div className="hidden md:block md:w-1/6 lg:w-1/8 text-center flex-1 invisible toBreveal">
+        <p>IG</p>
+      </div>
+
+      {/* Nav Links */}
+      <ul className="hidden md:flex flex-col items-end md:w-1/6 lg:w-1/8 flex-1 text-right invisible toBreveal">
+        <li>
+          <Link to="/" className="text-link">
+            home
+          </Link>
         </li>
-        <li className="NavLinks">
-          <Link to="/about" className="text-link" />
-          about
+        <li>
+          <Link to="/about" className="text-link">
+            about
+          </Link>
         </li>
-        <li className="NavLinks">
-          <Link to="/project" className="text-link" />
-          project
+        <li>
+          <Link to="/project" className="text-link">
+            project
+          </Link>
         </li>
-        <li className="NavLinks">
-          <Link to="/contact" className="text-link" />
-          contact
+        <li>
+          <Link to="/contact" className="text-link">
+            contact
+          </Link>
         </li>
       </ul>
-
-      <div className="grow text-right willHidden order-3">
-        <button className="bg-white text-black p-1.5 px-4 rounded-full">Get connect</button>
-      </div>
     </nav>
   );
 }
