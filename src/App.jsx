@@ -9,7 +9,7 @@ import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SplitText } from "gsap/SplitText";
 import HanumanSvg from "./components/HanumanSvg";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
@@ -24,11 +24,6 @@ function App() {
 
   const skillScroller = () => {
     const specializationArray = gsap.utils.toArray(".languageHeader");
-    ScrollSmoother.create({
-      wrapper: "#wrapper",
-      content: "#content",
-      smooth: 0.8,
-    });
 
     const descriptionHeight = document.querySelector(".techSectDescription").offsetHeight;
     const childHeights = specializationArray.map((e) => e.children[0].offsetHeight);
@@ -42,6 +37,7 @@ function App() {
         pin: index === 0 ? e : true,
         pinSpacing: index === specializationArray.length - 1 ? true : false,
       });
+      // index === specializationArray.length - 1
     });
 
     gsap.to(".techDes", {
@@ -51,8 +47,6 @@ function App() {
         endTrigger: specializationArray[0],
         end: `top ${specializationArray[0].children[0].offsetHeight}px`,
         scrub: 0.5,
-
-        // markers: true,
       },
 
       opacity: "0",
@@ -141,6 +135,11 @@ function App() {
                             }
                           );
                           contentRef.current.classList.remove("hidden");
+                          ScrollSmoother.create({
+                            wrapper: "#wrapper",
+                            content: "#content",
+                            smooth: 0.8,
+                          });
                           skillScroller();
 
                           const landingElementsChildren = gsap.utils.toArray(document.querySelector(".landingContentWrapper").children);
@@ -170,8 +169,6 @@ function App() {
           },
         });
         nameRef.current.classList.add("flex");
-
-        return;
       }
       const img = images[currentIndex];
       const src = img.dataset.loadsrc || img.getAttribute("data-load-src");
@@ -188,6 +185,8 @@ function App() {
       };
     }
     loadNextImage();
+    // ScrollTrigger.create({ trigger: ".test2", start: "top bottom", endTrigger: ".projectIntro", end: "bottom bottom", pin: ".tech", pinSpacing: false });
+    gsap.to(".test2", { scrollTrigger: { trigger: ".test2", start: "top+=100px bottom", endTrigger: ".projectIntro", end: "bottom bottom", scrub: true }, yPercent: -5, zIndex: 99 });
   }, []);
   return (
     <>

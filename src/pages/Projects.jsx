@@ -4,11 +4,11 @@ import PictureProject from "../components/PictureProject";
 import NoPicProject from "../components/NoPicProject";
 export default function Projects() {
   return (
-    <section className="test2">
+    <section className="test2 relative z-99">
       {/* <SectionHeader headerName="Projects" /> */}
       <p className="p-2.5 opacity-60">(ABOUT)</p>
       <br />
-      <div className="h-[90vh] flex flex-col justify-between">
+      <div className="h-[90vh] flex flex-col justify-between projectIntro">
         <div className="p-2.5 flex items-center justify-between">
           <p className="text-3xl w-1/2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima ipsum optio voluptatum architecto fuga adipisci fugiat impedit nisi aperiam veniam. Impedit beatae voluptatibus corrupti at eaque fuga saepe magni officia.</p>
           <img className=" w-1/5" src={loopSvg} alt="" />
