@@ -13,7 +13,7 @@ export default function NoPicProject(props) {
         setHover(false);
       }}
       on
-      className={`h-24 hover:bg-[url("./image/alphakey.png")] bg-center bg-cover flex items-center justify-between text-4xl border-[1px] border-x-0 border-opacity-20 border-b-0 p-2.5 ${props.end && "border-b-[1px]"}`}
+      className={`h-24 hover:bg-white bg-center bg-cover flex items-center justify-between text-4xl border-[1px] border-x-0 border-opacity-20 border-b-0 p-2.5 ${props.end && "border-b-[1px]"}`}
     >
       {hover ? (
         <LanguageSlide languageArray={props.languageArray} />

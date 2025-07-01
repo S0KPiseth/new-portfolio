@@ -140,7 +140,7 @@ function App() {
                             content: "#content",
                             smooth: 0.8,
                           });
-                          skillScroller();
+                          // skillScroller();
 
                           const landingElementsChildren = gsap.utils.toArray(document.querySelector(".landingContentWrapper").children);
                           const myName = document.querySelector(".name");
@@ -186,7 +186,6 @@ function App() {
     }
     loadNextImage();
     // ScrollTrigger.create({ trigger: ".test2", start: "top bottom", endTrigger: ".projectIntro", end: "bottom bottom", pin: ".tech", pinSpacing: false });
-    gsap.to(".test2", { scrollTrigger: { trigger: ".test2", start: "top+=100px bottom", endTrigger: ".projectIntro", end: "bottom bottom", scrub: true }, yPercent: -5, zIndex: 99 });
   }, []);
   return (
     <>
@@ -237,7 +236,7 @@ function App() {
             </section>
             <div ref={contentRef} className="hidden h-fit">
               <AboutPage />
-              <Projects />
+              {/* <Projects /> */}
             </div>
           </div>
         </div>

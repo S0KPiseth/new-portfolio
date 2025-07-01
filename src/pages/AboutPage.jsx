@@ -102,7 +102,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <section className="min-h-screen test">
+    <section className="min-h-screen test relative z-0">
       <div className="flex flex-col justify-start md:justify-center items-center gap-2.5 h-fit md:h-screen ">
         <p className="lg:text-[2.5vw] text-xl md:text-4xl leading-[1.1] aboutParagraph font-semibold w-full lg:w-11/12 text-center p-1.5 lg:p-0">Hi, I’m Seth. I’m a full stack developer who enjoys creating clean, functional, and user-friendly web apps. I like working across the stack — from crafting UI to setting up servers — and I’m always looking for new things to build and learn along the way.</p>
         <br />
