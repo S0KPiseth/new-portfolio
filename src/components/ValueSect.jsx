@@ -5,7 +5,7 @@ import Svg3 from "../assets/svg3/Svg3";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 export default function ValueSect() {
   useGSAP(() => {
     gsap.fromTo(
@@ -20,6 +20,7 @@ export default function ValueSect() {
         scrollTrigger: {
           trigger: ".value",
           start: "top bottom",
+          toggleActions: "restart none none none",
         },
         y: 0,
         opacity: 1,
@@ -33,6 +34,7 @@ export default function ValueSect() {
         trigger: ".valueParagraph",
         start: "top+=10% bottom",
         end: "top 20%",
+        toggleActions: "restart none none none",
       },
 
       y: 50,
@@ -86,7 +88,7 @@ export default function ValueSect() {
     });
   }, []);
   return (
-    <div className="flex flex-col gap-y-25 valueDiv">
+    <div className="flex flex-col gap-y-25 valueDiv !duration-0">
       <div className="value">
         <p className="text-xl p-2.5 pb-0 valueText">Value</p>
         <span className="uppercase flex font-secondary justify-evenly text-3xl lg:text-[3vw] font-semibold p-2.5">

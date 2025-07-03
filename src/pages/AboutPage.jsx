@@ -90,9 +90,6 @@ export default function AboutPage() {
     });
 
     zoomTl.set("#svg2", { color: "white" });
-
-    zoomTl.to({}, { duration: 0.2 });
-
     zoomTl.to("#svg2", {
       scale: 150,
       transformOrigin: "center",

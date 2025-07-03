@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { SplitText } from "gsap/SplitText";
 import HanumanSvg from "./components/HanumanSvg";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
+import ContactPage from "./pages/ContactPage";
 
 gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, MotionPathPlugin);
 
@@ -21,39 +22,6 @@ function App() {
   const contentRef = useRef(null);
   const nameRef = useRef(null);
   const hanumanRef = useRef(null);
-
-  const skillScroller = () => {
-    const specializationArray = gsap.utils.toArray(".languageHeader");
-
-    const descriptionHeight = document.querySelector(".techSectDescription").offsetHeight;
-    const childHeights = specializationArray.map((e) => e.children[0].offsetHeight);
-
-    specializationArray.forEach((e, index) => {
-      ScrollTrigger.create({
-        trigger: index === 0 ? ".techSectDescription" : e,
-        start: index === 0 ? "center top" : `top ${index * childHeights[index - 1] + descriptionHeight / 2}px`,
-        endTrigger: ".tech",
-        end: "bottom bottom",
-        pin: index === 0 ? e : true,
-        pinSpacing: index === specializationArray.length - 1 ? true : false,
-      });
-      // index === specializationArray.length - 1
-    });
-
-    gsap.to(".techDes", {
-      scrollTrigger: {
-        trigger: ".techSectDescription",
-        start: "top top",
-        endTrigger: specializationArray[0],
-        end: `top ${specializationArray[0].children[0].offsetHeight}px`,
-        scrub: 0.5,
-      },
-
-      opacity: "0",
-      y: "-100px",
-    });
-  };
-
   useGSAP(() => {
     gsap.set(".hanuman", {
       drawSVG: `0%`,
@@ -74,7 +42,6 @@ function App() {
             const state = Flip.getState(hanumanRef.current);
             nameRef.current.appendChild(hanumanRef.current);
             hanumanRef.current.classList.add("w-1/6", "h-full");
-            hanumanRef.current.classList.remove("h-auto");
 
             Flip.from(state, {
               scale: true,
@@ -113,11 +80,16 @@ function App() {
                         onUpdate: () => {
                           gsap.to(".visnuStatue", { scale: 1 });
                         },
-                        onComplete: () => {
+                        onStart: () => {
                           const temp = document.getElementById("temp");
                           temp.remove();
+
                           let text = SplitText.create(".toBreveal", { type: "lines", mask: "lines" });
+                          let nameText = SplitText.create(".nameText", { type: "chars" });
                           gsap.to(".toBreveal", { visibility: "visible" });
+                          gsap.to(".nameText", { visibility: "visible" });
+
+                          gsap.from(nameText.chars, { yPercent: 50, opacity: 0, scale: 0.7, stagger: 0.05 });
                           gsap.from(text.lines, {
                             y: 100,
                             autoAlpha: 0,
@@ -140,11 +112,14 @@ function App() {
                             content: "#content",
                             smooth: 0.8,
                           });
+                          document.querySelector(".test2").classList.remove("hidden");
                           // skillScroller();
 
                           const landingElementsChildren = gsap.utils.toArray(document.querySelector(".landingContentWrapper").children);
                           const myName = document.querySelector(".name");
                           if (myName) {
+                            myName.classList.add("flex");
+                            myName.classList.remove("hidden");
                             landingElementsChildren.push(myName);
                           }
 
@@ -168,7 +143,6 @@ function App() {
             });
           },
         });
-        nameRef.current.classList.add("flex");
       }
       const img = images[currentIndex];
       const src = img.dataset.loadsrc || img.getAttribute("data-load-src");
@@ -198,12 +172,12 @@ function App() {
               </header>
               <div className="flex justify-center h-full w-full relative" id="temp">
                 <HanumanSvg hanumanRef={hanumanRef} />
-                <div className="hidden h-fit w-full p-2.5 items-end absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white" ref={nameRef}>
-                  <img data-load-src="./image/name/p.png" alt="" className="w-1/6 order-1 opacity-0 letter h-6/12" />
-                  <img data-load-src="./image/name/s.png" alt="" className="w-1/6 order-3 opacity-0 letter h-6/12" />
-                  <img data-load-src="./image/name/e.png" alt="" className="w-1/6 order-4 opacity-0 letter h-6/12" />
-                  <img data-load-src="./image/name/tt.png" alt="" className="w-1/6 order-5 opacity-0 letter h-6/12" />
-                  <img data-load-src="./image/name/h.png" alt="" className="w-1/6 order-6 opacity-0 letter h-6/12" />
+                <div className="hidden h-1/12 md:h-fit w-full p-2.5 items-end absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white" ref={nameRef}>
+                  <img data-load-src="./image/name/p.png" alt="" className="w-1/6 order-1 opacity-0 letter " />
+                  <img data-load-src="./image/name/s.png" alt="" className="w-1/6 order-3 opacity-0 letter " />
+                  <img data-load-src="./image/name/e.png" alt="" className="w-1/6 order-4 opacity-0 letter " />
+                  <img data-load-src="./image/name/tt.png" alt="" className="w-1/6 order-5 opacity-0 letter " />
+                  <img data-load-src="./image/name/h.png" alt="" className="w-1/6 order-6 opacity-0 letter " />
                 </div>
               </div>
 
@@ -230,13 +204,14 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-0 lg:bottom-[-70px] z-1 flex justify-center w-screen text-[20.5vw] font-[Notable] name">
-                <p className="invisible toBreveal">PISETH</p>
+              <div className="absolute bottom-0 lg:bottom-[-70px] z-1  justify-center w-screen text-[20.5vw] font-[Notable] name hidden">
+                <p className="invisible opacity-100 nameText">PISETH</p>
               </div>
             </section>
             <div ref={contentRef} className="hidden h-fit">
               <AboutPage />
               {/* <Projects /> */}
+              <ContactPage />
             </div>
           </div>
         </div>
