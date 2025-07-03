@@ -82,8 +82,8 @@ export default function Projects() {
       {/* <NoPicProject name="Portfolio V1" />
 
       <NoPicProject name="4k youtube downloader" end={true} /> */}
-      <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible invisible" ref={svgRef}>
-        <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="3" id="circle" />
+      <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden svgContainer pointer-events-none" ref={svgRef}>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="3" id="circle" className="invisible" />
       </svg>
     </section>
   );
