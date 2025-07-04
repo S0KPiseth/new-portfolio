@@ -36,3 +36,6 @@
 .word1 {
   @apply pl-28;
 }
+#circle {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0) 100%, rgba(255, 255, 255, 1) 100%);
+}

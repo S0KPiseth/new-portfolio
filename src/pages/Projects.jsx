@@ -16,9 +16,12 @@ export default function Projects() {
   return (
     <section className="test2 bg-[#101010] z-[999] relative text-white hidden lg:p-2.5 p-1 cursor-pointer">
       {/* <SectionHeader headerName="Projects" /> */}
-      <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden svgContainer pointer-events-none" ref={svgRef}>
+      <div className="fixed w-full h-full top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" id="circle">
+        &nbsp;
+      </div>
+      {/* <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden svgContainer pointer-events-none" ref={svgRef}>
         <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="3" id="circle" className="invisible" />
-      </svg>
+      </svg> */}
       <div className="w-full flex flex-col gap-20">
         <div className="flex justify-between items-center">
           <p className=" lg:text-[9vw] font-bold uppercase project text-5xl">Project</p>

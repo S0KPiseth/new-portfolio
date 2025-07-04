@@ -10,13 +10,13 @@ export default function ContactPage() {
   const [scrolledContact, setScrolledContact] = useState(false);
 
   useGSAP(() => {
-    gsap.set(".svgContainer", {
-      scrollTrigger: {
-        trigger: ".contact",
-        scrub: true,
-      },
-      display: "block",
-    });
+    // gsap.set(".svgContainer", {
+    //   scrollTrigger: {
+    //     trigger: ".contact",
+    //     scrub: true,
+    //   },
+    //   display: "block",
+    // });
 
     gsap.to("#circle", {
       scrollTrigger: {
@@ -27,8 +27,7 @@ export default function ContactPage() {
         end: "bottom bottom",
         pinSpacing: false,
       },
-      strokeWidth: 100,
-      visibility: "visible",
+      backgroundImage: "radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 0%)",
     });
     gsap.to("#circle", {
       scrollTrigger: {
