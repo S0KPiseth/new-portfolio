@@ -4,9 +4,11 @@ import gsap from "gsap";
 import { useState } from "react";
 import HanumanSvg from "../components/HanumanSvg";
 import SplitText from "gsap/SplitText";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function ContactPage() {
   const [scrolledContact, setScrolledContact] = useState(false);
+
   useGSAP(() => {
     gsap.set(".svgContainer", {
       scrollTrigger: {
@@ -24,24 +26,35 @@ export default function ContactPage() {
         start: "top bottom",
         end: "bottom bottom",
         pinSpacing: false,
-        markers: true,
-        onEnter: () => {
-          setScrolledContact(false);
-        },
-        onLeave: () => {
-          setScrolledContact(true);
-        },
-        onEnterBack: () => {
-          setScrolledContact(false);
-        },
       },
       strokeWidth: 100,
       visibility: "visible",
     });
+    gsap.to("#circle", {
+      scrollTrigger: {
+        trigger: ".contact",
+        start: "top bottom",
+        end: "bottom bottom",
+        toggleActions: "restart none none none",
+      },
+      onStart: () => {
+        setScrolledContact(false);
+      },
+      onComplete: () => {
+        setScrolledContact(true);
+      },
+    });
     const contactText = SplitText.create(".contactText", { type: "words", mask: "lines" });
     gsap.from(contactText.words, { scrollTrigger: { trigger: ".contactText", start: "top center", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
     gsap.from(".contactLinks", { scrollTrigger: { trigger: ".contactLinks", start: "top bottom", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
-    gsap.from(".footerName", { scrollTrigger: { trigger: ".footerDiv", toggleActions: "restart none none none" }, yPercent: 50, scale: 0.7, ease: "expo.inOut", duration: 1 });
+    gsap.from(".footerName", {
+      scrollTrigger: { trigger: ".footerDiv", toggleActions: "restart none none none" },
+      yPercent: 50,
+      scale: 0.7,
+      ease: "expo.inOut",
+      duration: 1,
+    });
+    ScrollTrigger.refresh();
   }, []);
   return (
     <section className="h-screen w-screen contact text-black relative flex flex-col justify-evenly font-medium">

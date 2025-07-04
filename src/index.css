@@ -36,6 +36,3 @@
 .word1 {
   @apply pl-28;
 }
-.pin-spacer {
-  pointer-events: none;
-}

@@ -2,15 +2,16 @@ import { BrowserRouter as Router, Routes, Route, useLocation, data } from "react
 import NavBar from "./components/NavBar";
 import AboutPage from "./pages/AboutPage";
 import Projects from "./pages/Projects";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-import { Flip } from "gsap/Flip";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import DrawSVGPlugin from "gsap/DrawSVGPlugin";
+import Flip from "gsap/Flip";
+
+import ScrollTrigger from "gsap/ScrollTrigger";
+import ScrollSmoother from "gsap/ScrollSmoother";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+import SplitText from "gsap/SplitText";
 import { useEffect, useRef, useState } from "react";
-import { SplitText } from "gsap/SplitText";
 import HanumanSvg from "./components/HanumanSvg";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 import ContactPage from "./pages/ContactPage";
@@ -23,6 +24,7 @@ function App() {
   const nameRef = useRef(null);
   const hanumanRef = useRef(null);
   useGSAP(() => {
+    ScrollTrigger.normalizeScroll(true);
     gsap.set(".hanuman", {
       drawSVG: `0%`,
     });
@@ -110,7 +112,7 @@ function App() {
                           ScrollSmoother.create({
                             wrapper: "#wrapper",
                             content: "#content",
-                            smooth: 0.8,
+                            smooth: 1,
                           });
                           document.querySelector(".test2").classList.remove("hidden");
                           // skillScroller();

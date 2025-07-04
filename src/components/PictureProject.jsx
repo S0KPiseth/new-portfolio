@@ -19,7 +19,7 @@ export default function PictureProject(props) {
 
   return (
     <div>
-      <div className="bg-size-[100%_auto] w-full aspect-[16/8] bg-center flex items-end mx-auto bg-no-repeat picProject" ref={containerRef} onMouseEnter={handleHover} onMouseLeave={handleMouseOut}></div>
+      <div className="bg-size-[100%_auto] w-full aspect-[16/8] bg-center flex items-end mx-auto bg-no-repeat picProject" ref={containerRef} onMouseEnter={handleHover} onMouseLeave={handleMouseOut} />
       <div>
         <p className="uppercase md:text-xl text-[2.5vw]">{props.name}</p>
         <p className="text-[1.5vw] md:text-sm opacity-50">{props.field}</p>

@@ -1,7 +1,7 @@
 export default function LanguageCategory(props) {
   return (
     <>
-      <div className="grid grid-cols-2 grid-rows-[max-content_auto] h-screen gap-y-10 languageHeader bg-white !duration-0">
+      <div className="grid grid-cols-2 grid-rows-[max-content_auto] h-screen gap-y-10 languageHeader bg-white">
         <div className="grid col-span-2 row-span-1 row-start-1 grid-cols-2 nameAndIdx lg:text-[4vw] text-3xl p-2.5">
           <hr className="w-full h-0.5 opacity-50 col-span-2" />
 

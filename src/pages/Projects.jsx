@@ -14,8 +14,11 @@ export default function Projects() {
     gsap.from(projectIntroText.words, { scrollTrigger: { trigger: ".projectIntroText", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
   }, []);
   return (
-    <section className="test2 bg-[#101010] z-50 relative text-white hidden lg:p-2.5 p-1 !duration-0">
+    <section className="test2 bg-[#101010] z-[999] relative text-white hidden lg:p-2.5 p-1 cursor-pointer">
       {/* <SectionHeader headerName="Projects" /> */}
+      <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden svgContainer pointer-events-none" ref={svgRef}>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="3" id="circle" className="invisible" />
+      </svg>
       <div className="w-full flex flex-col gap-20">
         <div className="flex justify-between items-center">
           <p className=" lg:text-[9vw] font-bold uppercase project text-5xl">Project</p>
@@ -82,9 +85,6 @@ export default function Projects() {
       {/* <NoPicProject name="Portfolio V1" />
 
       <NoPicProject name="4k youtube downloader" end={true} /> */}
-      <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden svgContainer pointer-events-none" ref={svgRef}>
-        <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="3" id="circle" className="invisible" />
-      </svg>
     </section>
   );
 }
