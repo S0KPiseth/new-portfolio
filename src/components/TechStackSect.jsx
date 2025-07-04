@@ -8,7 +8,7 @@ export default function TechStackSect() {
   useGSAP(() => {
     const LanguageCategory = gsap.utils.toArray(".languageHeader");
     LanguageCategory.forEach((ele, index) => {
-      gsap.set(ele, { scrollTrigger: { trigger: ele, start: "bottom bottom", pin: true, pinSpacing: false, endTrigger: ".test2", end: "top top", scrub: 1 }, top: `${(index + 1) * 10}vh` });
+      gsap.set(ele, { scrollTrigger: { trigger: ele, start: "bottom bottom", pin: true, pinSpacing: false, endTrigger: ".test2", end: "top top", scrub: 1 }, marginTop: `${(index + 1) * 10}vh` });
     });
   }, []);
   return (
