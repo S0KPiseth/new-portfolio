@@ -60,8 +60,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
 
   useEffect(() => {
     if (hovered) {
-      document.body.style.cursor = dragged ? "grabbing" : "grab";
-      return () => void (document.body.style.cursor = "auto");
+      document.body.style.cursor = dragged ? "url('./cursor/cursor.svg'), grabbing" : "url('./cursor/cursor.svg'), grab";
+      return () => void (document.body.style.cursor = 'url("./cursor/normal.svg"), auto');
     }
   }, [hovered, dragged]);
 

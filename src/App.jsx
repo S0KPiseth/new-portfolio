@@ -217,7 +217,7 @@ function App() {
               <ContactPage />
             </div>
           </div>
-          <CustomCursor />
+          {/* <CustomCursor /> */}
         </div>
       </Router>
     </>

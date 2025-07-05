@@ -37,5 +37,12 @@
   @apply decoration-2 underline hover:decoration-blue-600;
 }
 body {
-  cursor: none;
+  cursor: url("./cursor/normal.svg"), auto;
+}
+a,
+button,
+.picProject,
+[role="button"],
+.clickable {
+  cursor: url("./cursor/cursor-pointer.svg"), pointer;
 }
