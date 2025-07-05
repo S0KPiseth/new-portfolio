@@ -5,6 +5,7 @@ import Svg3 from "../assets/svg3/Svg3";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import { values } from "../lib/constants";
 
 export default function ValueSect() {
   useGSAP(() => {
@@ -99,12 +100,12 @@ export default function ValueSect() {
         </span>
       </div>
 
-      <p className="lg:text-3xl text-2xl text-right p-2.5 valueParagraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum nihil cupiditate officiis aperiam natus possimus, delectus maiores voluptas iure quas harum vel consequuntur laudantium ab quasi quaerat ratione distinctio velit.</p>
+      <p className="lg:text-3xl text-2xl text-right p-2.5 valueParagraph">Value is what surrounds me and keeps me safe. It’s what makes me who I am and helps me face whatever comes my way. Without it, I would not be me.</p>
 
       <div className="flex flex-col sm:flex-row text-white/85">
-        <ValueCard svg={<Svg1 />} />
-        <ValueCard isMiddle={true} svg={<Svg2 />} />
-        <ValueCard svg={<Svg3 />} />
+        {values.map((value, index) => (
+          <ValueCard value={value} svg={index === 0 ? <Svg1 /> : index === 1 ? <Svg2 /> : <Svg3 />} isMiddle={index === 1 && true} />
+        ))}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Projects from "../pages/Projects";
+import { stacks } from "../lib/constants";
 
 export default function TechStackSect() {
   useGSAP(() => {
@@ -17,18 +18,13 @@ export default function TechStackSect() {
         <h1 className="text-4xl md:text-[5vw] uppercase font-black row-end-1">Tech Stack</h1>
         <br className="md:hidden" />
         <div className=" row-end-2 col-start-2 techSectDescription">
-          <p className="font-secondary md:text-3xl font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nisi pariatur veniam similique magni atque suscipit debitis ea unde nihil voluptates dolorem, blanditiis illo! Suscipit necessitatibus sint iure minima numquam! </p>
+          <p className="font-secondary md:text-3xl font-semibold text-sm">As I progress through my academic and professional journey, I recognize that technical and soft skills are crucial for my success in the field of software development. </p>
         </div>
       </div>
-      <LanguageCategory last={false} index="01" name="UX/UI & Front end" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nisi pariatur veniam similique magni atque suscipit debitis ea unde nihil voluptate" language={[["Figma"], ["Reactjs", "Tailwind", "Css", "Gsap", "Boostrap"], ["HTML", "Javascript", "Css"]]} />
-      <br />
-      <LanguageCategory last={false} index="02" name="Back end" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nisi pariatur veniam similique magni atque suscipit debitis ea unde nihil voluptate" language={[["Figma"], ["Reactjs", "Tailwind", "Css", "Gsap", "Boostrap"], ["HTML", "Javascript", "Css"]]} />
+      {stacks.map((stack, index) => (
+        <LanguageCategory last={index === stacks.length - 1 ? false : true} index={`0${index + 1}`} stack={stack} />
+      ))}
 
-      <br />
-      <LanguageCategory last={false} index="02" name="Back end" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nisi pariatur veniam similique magni atque suscipit debitis ea unde nihil voluptate" language={[["Figma"], ["Reactjs", "Tailwind", "Css", "Gsap", "Boostrap"], ["HTML", "Javascript", "Css"]]} />
-
-      <br />
-      <LanguageCategory last={true} index="02" name="Back end" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati nisi pariatur veniam similique magni atque suscipit debitis ea unde nihil voluptate" language={[["Figma"], ["Reactjs", "Tailwind", "Css", "Gsap", "Boostrap"], ["HTML", "Javascript", "Css"]]} />
       <Projects />
     </div>
   );

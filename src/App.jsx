@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import HanumanSvg from "./components/HanumanSvg";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 import ContactPage from "./pages/ContactPage";
+import CustomCursor from "./components/CustomCursor";
 
 gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, MotionPathPlugin);
 
@@ -187,7 +188,7 @@ function App() {
                 <div className="flex-col flex md:flex-row grow md:justify-evenly justify-center items-center md:items-stretch landingContentWrapper">
                   <div className="md:w-1/2 w-full">
                     <br className="hidden md:block" />
-                    <p className="font-secondary md:text-[1.5vw] uppercase invisible toBreveal p-2.5 md:self-start">Lorem ipsum dolor sit amet consectetur. Ultricies nibh curabitur tincidunt auctor gravida eget. Diam eget aliquet eget nulla tincidunt. Gravida phasellus nunc phasellus adipiscing eget.</p>
+                    <p className="font-secondary md:text-[1.5vw] uppercase invisible toBreveal p-2.5 md:self-start">I design and develop modern, high-performing websites with care and commitment. Each project reflects my dedication to clean code and seamless UX. Your vision is the blueprint, and I bring it to life with precision.</p>
                   </div>
                   <div className="md:w-1/6 absolute top-30 md:static h-[70vh] md:h-auto">
                     <img data-load-src="./image/visnu.png" alt="Visnu Statue" className="md:w-full h-full visnuStatue scale-0" />
@@ -216,6 +217,7 @@ function App() {
               <ContactPage />
             </div>
           </div>
+          <CustomCursor />
         </div>
       </Router>
     </>

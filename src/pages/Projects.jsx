@@ -4,17 +4,18 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitText from "gsap/SplitText";
 import { useRef, useState } from "react";
+import { projectWPic, projectNoPic } from "../lib/constants";
 export default function Projects() {
   const svgRef = useRef(null);
 
   useGSAP(() => {
     const split = SplitText.create(".project", { type: "chars" });
-    const projectIntroText = SplitText.create(".projectIntroText", { type: "words", mask: "lines" });
+    const projectIntroText = SplitText.create(".projectIntroText", { type: "words", mask: "lines", wordsClass: "ProjectWord++" });
     gsap.from(split.chars, { scrollTrigger: { trigger: ".project", toggleActions: "restart none none none" }, yPercent: -50, stagger: 0.05 });
     gsap.from(projectIntroText.words, { scrollTrigger: { trigger: ".projectIntroText", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
   }, []);
   return (
-    <section className="test2 bg-[#101010] z-[999] relative text-white hidden lg:p-2.5 p-1 cursor-pointer">
+    <section className="test2 bg-[#101010] z-[999] relative text-white hidden lg:p-2.5 p-1">
       {/* <SectionHeader headerName="Projects" /> */}
       <div className="fixed w-full h-full top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" id="circle">
         &nbsp;
@@ -53,7 +54,13 @@ export default function Projects() {
         </div>
         <div className="grow flex flex-col justify-between projectIntro">
           <div className=" flex items-center justify-between">
-            <p className="md:text-3xl md:w-3/5 py-5 md:py-0 font-bold projectIntroText">To improve my skills, I work on open-source projects that are available on GitHub . Therefore, this section showcases the projects I’ve worked on in the past.</p>
+            <p className="md:text-3xl md:w-3/5 py-5 md:py-0 font-bold projectIntroText">
+              To improve my skills, I work on open-source projects that are available on
+              <a href="https://github.com/S0KPiseth" target="blank">
+                {` GitHub`}
+              </a>
+              . Therefore, this section showcases the projects I’ve worked on in the past.
+            </p>
           </div>
           <div className="flex justify-between text-[5vw] projectIntroText">
             <h1 className="font-bold">Selected project</h1>
@@ -62,32 +69,36 @@ export default function Projects() {
         </div>
       </div>
       <br />
-      <div className="flex lg:gap-2.5 gap-1">
-        <div className="w-3/5">
-          <PictureProject image="./image/mockups/plantShopMockup.png" name="Plant shop website" field="Front-end" />
+      {
+        <div className="flex flex-col gap-2.5">
+          {projectWPic
+            .reduce((rows, project, index) => {
+              // group every two items into a row
+              if (index % 2 === 0) {
+                rows.push([project]);
+              } else {
+                rows[rows.length - 1].push(project);
+              }
+              return rows;
+            }, [])
+            .map((pair, i) => (
+              <div key={i} className={`flex ${i % 2 === 0 ? "" : "flex-row-reverse"} lg:gap-2.5 gap-1`}>
+                {pair.map((project, j) => (
+                  <div key={j} className={j === 0 ? "w-3/5" : "grow"}>
+                    <PictureProject project={project} />
+                  </div>
+                ))}
+              </div>
+            ))}
         </div>
-        <div className="grow">
-          <PictureProject image="./image/mockups/TaskerMockup.png" name="Task-er" field="Full stack" />
-        </div>
-      </div>
-      <div className="flex lg:gap-2.5 gap-1 flex-row-reverse">
-        <div className="w-3/5">
-          <PictureProject image="./image/mockups/mockupsOldPort.jpg" name="Portfolio V1" field="Front-end" />
-        </div>
-        <div className="grow">
-          <PictureProject image="./image/mockups/AlphakeyMockup.png" name="Alphakey" field="Front-end" />
-        </div>
-      </div>
+      }
 
       <br />
       <p className="lg:text-[8vw] font-bold uppercase text-4xl text-center">Discover more</p>
       <br />
-      <NoPicProject name="4k youtube downloader" languageArray={["Javascript", "React", "Tailwind"]} />
-      <NoPicProject name="ConnectedZ" languageArray={["Python"]} end={true} />
-
-      {/* <NoPicProject name="Portfolio V1" />
-
-      <NoPicProject name="4k youtube downloader" end={true} /> */}
+      {projectNoPic.map((project, index) => {
+        return <NoPicProject project={project} index={index} end={index === projectNoPic.length - 1} />;
+      })}
     </section>
   );
 }

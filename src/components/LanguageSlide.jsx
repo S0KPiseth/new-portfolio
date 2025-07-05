@@ -23,7 +23,7 @@ export default function LanguageSlide(props) {
           gsap.to(child, {
             x: "-100%",
             repeat: -1,
-            duration: (copy.length * 2.5) / 3,
+            duration: (copy.length * 3.5) / 3,
             ease: "linear",
           });
         });
@@ -39,7 +39,7 @@ export default function LanguageSlide(props) {
         {copy.map((language) => {
           return (
             <>
-              <p className="bg-black p-1.5 rounded-full px-3.5">{language}</p>
+              <p className="bg-black p-1.5 rounded-full px-3.5 text-nowrap">{language}</p>
               <p className="text-black text-7xl">&middot;</p>
             </>
           );

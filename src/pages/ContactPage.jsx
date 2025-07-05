@@ -10,14 +10,6 @@ export default function ContactPage() {
   const [scrolledContact, setScrolledContact] = useState(false);
 
   useGSAP(() => {
-    // gsap.set(".svgContainer", {
-    //   scrollTrigger: {
-    //     trigger: ".contact",
-    //     scrub: true,
-    //   },
-    //   display: "block",
-    // });
-
     gsap.to("#circle", {
       scrollTrigger: {
         trigger: ".contact",
@@ -33,19 +25,24 @@ export default function ContactPage() {
       scrollTrigger: {
         trigger: ".contact",
         start: "top bottom",
-        end: "bottom bottom",
+        end: "+=50%",
         toggleActions: "restart none none none",
-      },
-      onStart: () => {
-        setScrolledContact(false);
-      },
-      onComplete: () => {
-        setScrolledContact(true);
+        onEnter: () => {
+          setScrolledContact(false);
+        },
+        onEnterBack: () => {
+          setScrolledContact(false);
+        },
+        onLeave: () => {
+          setScrolledContact(true);
+        },
       },
     });
     const contactText = SplitText.create(".contactText", { type: "words", mask: "lines" });
-    gsap.from(contactText.words, { scrollTrigger: { trigger: ".contactText", start: "top center", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
-    gsap.from(".contactLinks", { scrollTrigger: { trigger: ".contactLinks", start: "top bottom", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+    gsap.from(contactText.words, { scrollTrigger: { trigger: ".contactText", start: "center center", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+    gsap.from(".borderLines", { scrollTrigger: { trigger: ".contactText", start: "top center", scrub: 1 }, autoAlpha: 0 });
+
+    gsap.from(".contactLinks", { scrollTrigger: { trigger: ".contactLinks", start: "top bottom", end: "+=10%", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
     gsap.from(".footerName", {
       scrollTrigger: { trigger: ".footerDiv", toggleActions: "restart none none none" },
       yPercent: 50,
@@ -60,7 +57,7 @@ export default function ContactPage() {
       <div className="grow">
         <p className="md:text-8xl text-center font-bold contactText text-7xl ">LET'S CONNECT</p>
       </div>
-      <div className="flex md:p-2.5 p-1 border-t-1 border-black font-bold md:text-2xl text-[2vw]">
+      <div className="flex md:p-2.5 p-1 border-t-1 border-black font-bold md:text-2xl text-[2vw] borderLines gap-x-1.5">
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Email & Phone</p>
           <p className="contactText">piseth.sok.div@gmail.com</p>
@@ -75,7 +72,7 @@ export default function ContactPage() {
           <p className="contactText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
         </div>
       </div>
-      <div className="flex md:p-2.5 p-1  font-bold border-t-1 border-black  md:text-2xl text-[2vw]">
+      <div className="flex md:p-2.5 p-1  font-bold border-t-1 border-black  md:text-2xl text-[2vw] borderLines">
         <p className="w-1/3 contactLinks">All right reserve</p>
         <p className="w-1/3 text-center contactLinks">&#169;2025 Piseth Sok</p>
         <div className="w-1/3 flex justify-evenly">

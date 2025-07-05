@@ -12,12 +12,6 @@
     }
   }
 }
-.trims-text {
-  text-box-trim: trim-start;
-  text-box-edge: cap alphabetic;
-
-  color: #ffffffe4;
-}
 *::-webkit-scrollbar {
   display: none;
 }
@@ -38,4 +32,10 @@
 }
 #circle {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0) 100%, rgba(255, 255, 255, 1) 100%);
+}
+.ProjectWord14 {
+  @apply decoration-2 underline hover:decoration-blue-600;
+}
+body {
+  cursor: none;
 }
