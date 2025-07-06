@@ -37,7 +37,7 @@
   @apply decoration-2 underline hover:decoration-blue-600;
 }
 body {
-  cursor: url("./cursor/normal.svg"), auto;
+  cursor: url("/cursor/normal.svg"), auto;
 }
 a,
 button,
@@ -46,7 +46,7 @@ button,
 [role="button"],
 .noPic,
 .clickable {
-  cursor: url("./cursor/cursor-pointer.svg"), pointer;
+  cursor: url("/cursor/cursor-pointer.svg"), pointer;
 }
 .text-link {
   @apply hover:text-blue-500;
