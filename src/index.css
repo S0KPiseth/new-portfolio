@@ -42,7 +42,12 @@ body {
 a,
 button,
 .picProject,
+.text-link,
 [role="button"],
+.noPic,
 .clickable {
   cursor: url("./cursor/cursor-pointer.svg"), pointer;
+}
+.text-link {
+  @apply hover:text-blue-500;
 }

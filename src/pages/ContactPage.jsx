@@ -39,9 +39,33 @@ export default function ContactPage() {
       },
     });
     const contactText = SplitText.create(".contactText", { type: "words", mask: "lines" });
-    gsap.from(contactText.words, { scrollTrigger: { trigger: ".contactText", start: "center center", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+    const connectHeader = SplitText.create(".connectHeader", { type: "chars" });
+    gsap.fromTo(
+      ".connectHeader",
+      {
+        autoAlpha: 0,
+      },
+      {
+        autoAlpha: 1,
+        scrollTrigger: {
+          trigger: ".contact",
+          start: "top center",
+          toggleActions: "play reverse play reverse",
+        },
+      }
+    );
+    gsap.from(connectHeader.chars, {
+      yPercent: 50,
+      autoAlpha: 0,
+      stagger: 0.01,
+      scrollTrigger: {
+        trigger: ".contact",
+        start: "top center",
+        toggleActions: "play reverse play reverse",
+      },
+    });
     gsap.from(".borderLines", { scrollTrigger: { trigger: ".contactText", start: "top center", scrub: 1 }, autoAlpha: 0 });
-
+    gsap.from(contactText.words, { scrollTrigger: { trigger: ".borderLines1", start: "top bottom", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
     gsap.from(".contactLinks", { scrollTrigger: { trigger: ".contactLinks", start: "top bottom", end: "+=10%", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
     gsap.from(".footerName", {
       scrollTrigger: { trigger: ".footerDiv", toggleActions: "restart none none none" },
@@ -53,11 +77,11 @@ export default function ContactPage() {
     ScrollTrigger.refresh();
   }, []);
   return (
-    <section className="h-screen w-screen contact text-black relative flex flex-col justify-evenly font-medium">
+    <section className="h-screen w-screen contact text-black relative flex flex-col justify-evenly font-medium ">
       <div className="grow">
-        <p className="md:text-8xl text-center font-bold contactText text-7xl ">LET'S CONNECT</p>
+        <p className="md:text-8xl text-center font-bold connectHeader text-7xl">LET'S CONNECT</p>
       </div>
-      <div className="flex md:p-2.5 p-1 border-t-1 border-black font-bold md:text-2xl text-[2vw] borderLines gap-x-1.5">
+      <div className="flex md:p-2.5 p-1 border-t-1 border-black font-bold md:text-2xl text-[2vw] borderLines borderLines1 gap-x-1.5">
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Email & Phone</p>
           <p className="contactText">piseth.sok.div@gmail.com</p>

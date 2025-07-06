@@ -82,7 +82,7 @@ export default function TiltedCard({ imageSrc, altText = "Tilted card image", ca
         }}
       >
         <motion.img
-          data-load-src={imageSrc}
+          src={imageSrc}
           alt={altText}
           className="absolute top-0 left-0 object-cover object-top rounded-[15px] will-change-transform [transform:translateZ(0)]"
           style={{

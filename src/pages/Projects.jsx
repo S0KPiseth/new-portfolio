@@ -3,11 +3,8 @@ import NoPicProject from "../components/NoPicProject";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitText from "gsap/SplitText";
-import { useRef, useState } from "react";
 import { projectWPic, projectNoPic } from "../lib/constants";
 export default function Projects() {
-  const svgRef = useRef(null);
-
   useGSAP(() => {
     const split = SplitText.create(".project", { type: "chars" });
     const projectIntroText = SplitText.create(".projectIntroText", { type: "words", mask: "lines", wordsClass: "ProjectWord++" });
@@ -15,7 +12,7 @@ export default function Projects() {
     gsap.from(projectIntroText.words, { scrollTrigger: { trigger: ".projectIntroText", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
   }, []);
   return (
-    <section className="test2 bg-[#101010] z-[999] relative text-white hidden lg:p-2.5 p-1">
+    <section className="test2 bg-[#101010] z-[999] relative text-white hidden">
       {/* <SectionHeader headerName="Projects" /> */}
       <div className="fixed w-full h-full top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" id="circle">
         &nbsp;
@@ -23,7 +20,7 @@ export default function Projects() {
       {/* <svg viewBox="0 0 100 100" className="fixed w-[450vw] h-[450vh] top-1/2 lg:top-10/12 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden svgContainer pointer-events-none" ref={svgRef}>
         <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="3" id="circle" className="invisible" />
       </svg> */}
-      <div className="w-full flex flex-col gap-20">
+      <div className="w-full flex flex-col gap-20 lg:p-2.5 p-1">
         <div className="flex justify-between items-center">
           <p className=" lg:text-[9vw] font-bold uppercase project text-5xl">Project</p>
           <svg viewBox="0 0 201 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-1/12">
@@ -70,7 +67,7 @@ export default function Projects() {
       </div>
       <br />
       {
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2.5 lg:p-2.5 p-1">
           {projectWPic
             .reduce((rows, project, index) => {
               // group every two items into a row
@@ -95,10 +92,12 @@ export default function Projects() {
 
       <br />
       <p className="lg:text-[8vw] font-bold uppercase text-4xl text-center">Discover more</p>
-      <br />
-      {projectNoPic.map((project, index) => {
-        return <NoPicProject project={project} index={index} end={index === projectNoPic.length - 1} />;
-      })}
+
+      <div className="h-screen place-content-center ">
+        {projectNoPic.map((project, index) => {
+          return <NoPicProject project={project} index={index} end={index === projectNoPic.length - 1} />;
+        })}
+      </div>
     </section>
   );
 }

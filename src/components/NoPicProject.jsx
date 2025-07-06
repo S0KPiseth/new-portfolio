@@ -17,7 +17,7 @@ export default function NoPicProject(props) {
         }
       }}
       onClick={() => window.open(props.project.link)}
-      className={`h-20 md:h-24 hover:bg-white bg-center bg-cover flex items-center justify-between text-4xl border-[1px] border-x-0 border-opacity-20 border-b-0 md:p-2.5 ${props.end && "border-b-[1px]"}`}
+      className={`h-20 md:h-24 hover:bg-white bg-center bg-cover flex items-center justify-between text-4xl border-[1px] border-x-0 border-opacity-20 border-b-0 md:p-2.5 ${props.end && "border-b-[1px]"} uppercase font-bold noPic`}
     >
       {hover ? (
         <LanguageSlide languageArray={props.project.language} />

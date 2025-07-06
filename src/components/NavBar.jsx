@@ -1,8 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import { Link } from "react-router";
-import gsap from "gsap";
-import Flip from "gsap/Flip";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function NavBar() {
   const [localTime, setLocalTime] = useState("");
@@ -34,8 +30,12 @@ export default function NavBar() {
       {/* Gmail + Contact */}
       <div className="hidden lg:flex items-center justify-center lg:w-1/5">
         <div className="flex flex-col text-left invisible toBreveal">
-          <a href="mailto:piseth.sok.dev@gmail.com">piseth.sok.dev@gmail.com</a>
-          <a href="https://t.me/PisethS0K">+855 967317030</a>
+          <a href="mailto:piseth.sok.dev@gmail.com" target="blank" className="text-link">
+            piseth.sok.dev@gmail.com
+          </a>
+          <a href="https://t.me/PisethS0K" target="blank" className="text-link">
+            +855 967317030
+          </a>
         </div>
       </div>
 
@@ -51,31 +51,17 @@ export default function NavBar() {
 
       {/* IG */}
       <div className="hidden md:block md:w-1/6 lg:w-1/8 text-center flex-1 invisible toBreveal">
-        <p>IG</p>
+        <a href="https://www.instagram.com/s0kpiseth/" target="blank" className="text-link">
+          IG
+        </a>
       </div>
 
       {/* Nav Links */}
       <ul className="hidden md:flex flex-col items-end md:w-1/6 lg:w-1/8 flex-1 text-right invisible toBreveal">
-        <li>
-          <Link to="/" className="text-link">
-            home
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" className="text-link">
-            about
-          </Link>
-        </li>
-        <li>
-          <Link to="/project" className="text-link">
-            project
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact" className="text-link">
-            contact
-          </Link>
-        </li>
+        <li className="text-link">home</li>
+        <li className="text-link">about</li>
+        <li className="text-link">project</li>
+        <li className="text-link">contact</li>
       </ul>
     </nav>
   );
