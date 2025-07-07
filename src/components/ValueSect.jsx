@@ -28,42 +28,23 @@ export default function ValueSect() {
         stagger: 0.1,
       }
     );
-    const split = SplitText.create(".valueParagraph", { type: "words" });
+    document.fonts.ready.then(() => {
+      const split = SplitText.create(".valueParagraph", { type: "words" });
 
-    gsap.from(split.words, {
-      scrollTrigger: {
-        trigger: ".valueParagraph",
-        start: "top+=10% bottom",
-        end: "top 20%",
-        toggleActions: "restart none none none",
-      },
-
-      y: 50,
-      autoAlpha: 0,
-      stagger: 0.05,
-    });
-    const svg2Children = gsap.utils.toArray("#svg2 > *");
-    const svgTimeLine = gsap
-      .timeline({
+      gsap.from(split.words, {
         scrollTrigger: {
-          trigger: ".valueCardContainer",
+          trigger: ".valueParagraph",
           start: "top+=10% bottom",
-          end: "bottom bottom",
+          end: "top 20%",
+          toggleActions: "restart none none none",
         },
-      })
-      .fromTo(
-        svg2Children,
-        {
-          scale: 1.2,
-          transformOrigin: "center center",
-        },
-        {
-          scale: 1,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.1,
-        }
-      );
+
+        y: 50,
+        autoAlpha: 0,
+        stagger: 0.05,
+      });
+    });
+
     const svg1Children = gsap.utils.toArray("#svg1 > *");
 
     const svg1Timeline = gsap.timeline({
@@ -104,7 +85,7 @@ export default function ValueSect() {
 
       <div className="flex flex-col sm:flex-row text-white/85">
         {values.map((value, index) => (
-          <ValueCard value={value} svg={index === 0 ? <Svg1 /> : index === 1 ? <Svg2 /> : <Svg3 />} isMiddle={index === 1 && true} />
+          <ValueCard key={value.name} value={value} svg={index === 0 ? <Svg1 /> : index === 1 ? <Svg2 /> : <Svg3 />} isMiddle={index === 1 && true} />
         ))}
       </div>
     </div>

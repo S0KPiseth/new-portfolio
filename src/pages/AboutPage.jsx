@@ -3,7 +3,6 @@ import TechStackSect from "../components/TechStackSect";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import TiltedCard from "../components/TiltedCard";
 export default function AboutPage() {
   useGSAP(() => {
@@ -96,10 +95,11 @@ export default function AboutPage() {
       x: -100,
       ease: "none",
     });
+    gsap.set("body", { scrollTrigger: { trigger: ".test", start: "top bottom", toggleActions: "restart none start none" }, background: "transparent" });
   }, []);
 
   return (
-    <section className="min-h-screen test relative z-0">
+    <section className="min-h-screen test relative z-0 bg-[#101010]">
       <div className="flex flex-col justify-start md:justify-center items-center gap-2.5 h-fit md:h-screen ">
         <p className="lg:text-[2.5vw] text-xl md:text-4xl leading-[1.1] aboutParagraph font-semibold w-full lg:w-11/12 text-center p-1.5 lg:p-0">Hi, I’m Seth. I’m a full stack developer who enjoys creating clean, functional, and user-friendly web apps. I like working across the stack — from crafting UI to setting up servers — and I’m always looking for new things to build and learn along the way.</p>
         <br />

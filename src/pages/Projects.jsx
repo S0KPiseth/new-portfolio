@@ -6,10 +6,12 @@ import SplitText from "gsap/SplitText";
 import { projectWPic, projectNoPic } from "../lib/constants";
 export default function Projects() {
   useGSAP(() => {
-    const split = SplitText.create(".project", { type: "chars" });
-    const projectIntroText = SplitText.create(".projectIntroText", { type: "words", mask: "lines", wordsClass: "ProjectWord++" });
-    gsap.from(split.chars, { scrollTrigger: { trigger: ".project", toggleActions: "restart none none none" }, yPercent: -50, stagger: 0.05 });
-    gsap.from(projectIntroText.words, { scrollTrigger: { trigger: ".projectIntroText", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+    document.fonts.ready.then(() => {
+      const split = SplitText.create(".project", { type: "chars" });
+      const projectIntroText = SplitText.create(".projectIntroText", { type: "words", mask: "lines", wordsClass: "ProjectWord++" });
+      gsap.from(split.chars, { scrollTrigger: { trigger: ".project", toggleActions: "restart none none none" }, yPercent: -50, stagger: 0.05 });
+      gsap.from(projectIntroText.words, { scrollTrigger: { trigger: ".projectIntroText", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+    });
   }, []);
   return (
     <section className="test2 bg-[#101010] z-[999] relative text-white hidden">
@@ -95,7 +97,7 @@ export default function Projects() {
 
       <div className="h-screen place-content-center ">
         {projectNoPic.map((project, index) => {
-          return <NoPicProject project={project} index={index} end={index === projectNoPic.length - 1} />;
+          return <NoPicProject project={project} index={index} end={index === projectNoPic.length - 1} key={project.name} />;
         })}
       </div>
     </section>

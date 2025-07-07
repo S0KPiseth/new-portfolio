@@ -8,13 +8,14 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import Flip from "gsap/Flip";
 
 import ScrollTrigger from "gsap/ScrollTrigger";
-import ScrollSmoother from "gsap/ScrollSmoother";
+
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import SplitText from "gsap/SplitText";
 import { useRef } from "react";
 import HanumanSvg from "./components/HanumanSvg";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 import ContactPage from "./pages/ContactPage";
+import ScrollSmoother from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(useGSAP, DrawSVGPlugin, Flip, ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText, MotionPathPlugin);
 
@@ -24,6 +25,12 @@ function App() {
   const nameRef = useRef(null);
   const hanumanRef = useRef(null);
   const progressTextRef = useRef(null);
+
+  const smoothRef = useRef(null);
+
+  const scroll = (location) => {
+    smoothRef.current.scrollTo(location, true, "top top");
+  };
 
   useGSAP(() => {
     ScrollTrigger.normalizeScroll(true);
@@ -113,23 +120,14 @@ function App() {
                               autoAlpha: 0,
                               stagger: 0.05,
                             });
-                            gsap.fromTo(
-                              ".landingVisual",
-                              {
-                                visibility: "invisible",
-                                scale: "0",
-                              },
-                              {
-                                visibility: "visible",
-                                scale: "1",
-                              }
-                            );
+
                             contentRef.current.classList.remove("hidden");
-                            ScrollSmoother.create({
+                            smoothRef.current = ScrollSmoother.create({
                               wrapper: "#wrapper",
                               content: "#content",
                               smooth: 1,
                             });
+
                             document.querySelector(".test2").classList.remove("hidden");
                             // skillScroller();
 
@@ -172,7 +170,7 @@ function App() {
         <div id="content">
           <section className="bg-white text-black h-screen  w-screen homePage relative">
             <header className="w-full z-[99] headerNav hidden" ref={navRef}>
-              <NavBar />
+              <NavBar scroll={scroll} />
             </header>
             <div className="flex justify-center h-full w-full relative" id="temp">
               <HanumanSvg hanumanRef={hanumanRef} />
@@ -189,21 +187,21 @@ function App() {
             </div>
 
             <div className="flex-col justify-evenly relative hidden landingElements z-10 max-h-screen">
-              <div className="flex-col flex md:flex-row grow md:justify-evenly justify-center items-center md:items-stretch landingContentWrapper">
-                <div className="md:w-1/2 w-full">
-                  <br className="hidden md:block" />
-                  <p className="font-secondary md:text-[1.5vw] uppercase invisible toBreveal p-2.5 md:self-start">I design and develop modern, high-performing websites with care and commitment. Each project reflects my dedication to clean code and seamless UX. Your vision is the blueprint, and I bring it to life with precision.</p>
+              <div className="flex-col flex lg:flex-row grow lg:justify-evenly justify-center items-center lg:items-stretch landingContentWrapper md:flex-col-reverse">
+                <div className="lg:w-1/2 w-full">
+                  <br className="hidden lg:block" />
+                  <p className="font-secondary lg:text-[1.5vw] uppercase invisible toBreveal p-2.5 lg:self-start md:w-10/12 lg:w-full">I design and develop modern, high-performing websites with care and commitment. Each project reflects my dedication to clean code and seamless UX. Your vision is the blueprint, and I bring it to life with precision.</p>
                 </div>
-                <div className="md:w-1/6 absolute top-30 md:static h-[70vh] md:h-auto">
-                  <img src="./image/visnu.png" alt="Visnu Statue" className="md:w-full h-full visnuStatue scale-0" />
+                <div className="lg:w-1/6 absolute top-30 lg:static h-[70vh] lg:h-auto md:z-99 md:top-0">
+                  <img src="./image/visnu.png" alt="Visnu Statue" className="lg:w-full h-full visnuStatue scale-0" />
                   <div className="w-full absolute z-50 left-[50%] top-[70%] translate-x-[-50%] translate-y-[-50%] text-[15vw] md:hidden">
                     <p className='font-["Luxurious_Script"] text-right'>web</p>
                     <p className="font-secondary font-medium">developer</p>
                     <br />
                   </div>
                 </div>
-                <div className="md:flex grow md:w-1/2 md:text-[9vw]/27 self-center hidden">
-                  <div className="h-fit place-items-center">
+                <div className="md:flex grow lg:w-1/2 lg:text-[9vw]/27 self-center hidden md:text-[15vw]/25 md:self-start lg:self-center">
+                  <div className="h-fit place-items-center lg:place-items-center md:place-items-start md:p-2.5 lg:p-0">
                     <p className='font-["Luxurious_Script"] invisible toBreveal'>web</p>
                     <p className="font-secondary invisible toBreveal font-medium">developer</p>
                     <br />

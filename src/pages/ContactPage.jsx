@@ -38,8 +38,21 @@ export default function ContactPage() {
         },
       },
     });
-    const contactText = SplitText.create(".contactText", { type: "words", mask: "lines" });
-    const connectHeader = SplitText.create(".connectHeader", { type: "chars" });
+    document.fonts.ready.then(() => {
+      const contactText = SplitText.create(".contactText", { type: "words", mask: "lines" });
+      const connectHeader = SplitText.create(".connectHeader", { type: "chars" });
+      gsap.from(contactText.words, { scrollTrigger: { trigger: ".borderLines1", start: "top bottom", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+      gsap.from(connectHeader.chars, {
+        yPercent: 50,
+        autoAlpha: 0,
+        stagger: 0.01,
+        scrollTrigger: {
+          trigger: ".contact",
+          start: "top center",
+          toggleActions: "play reverse play reverse",
+        },
+      });
+    });
     gsap.fromTo(
       ".connectHeader",
       {
@@ -54,18 +67,8 @@ export default function ContactPage() {
         },
       }
     );
-    gsap.from(connectHeader.chars, {
-      yPercent: 50,
-      autoAlpha: 0,
-      stagger: 0.01,
-      scrollTrigger: {
-        trigger: ".contact",
-        start: "top center",
-        toggleActions: "play reverse play reverse",
-      },
-    });
+
     gsap.from(".borderLines", { scrollTrigger: { trigger: ".contactText", start: "top center", scrub: 1 }, autoAlpha: 0 });
-    gsap.from(contactText.words, { scrollTrigger: { trigger: ".borderLines1", start: "top bottom", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
     gsap.from(".contactLinks", { scrollTrigger: { trigger: ".contactLinks", start: "top bottom", end: "+=10%", scrub: 1 }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
     gsap.from(".footerName", {
       scrollTrigger: { trigger: ".footerDiv", toggleActions: "restart none none none" },
@@ -74,6 +77,7 @@ export default function ContactPage() {
       ease: "expo.inOut",
       duration: 1,
     });
+
     ScrollTrigger.refresh();
   }, []);
   return (
@@ -89,7 +93,7 @@ export default function ContactPage() {
         </div>
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Address</p>
-          <p className="md:w-1/2 contactText">Mlop Por Thmey Community Sangkat Kouk Roka Khan Prek Pnov Phnom Penh, 121104</p>
+          <p className="lg:w-1/2 contactText">Mlop Por Thmey Community Sangkat Kouk Roka Khan Prek Pnov Phnom Penh, 121104</p>
         </div>
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Hire me</p>

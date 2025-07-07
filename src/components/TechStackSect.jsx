@@ -22,7 +22,7 @@ export default function TechStackSect() {
         </div>
       </div>
       {stacks.map((stack, index) => (
-        <LanguageCategory last={index === stacks.length - 1 ? false : true} index={`0${index + 1}`} stack={stack} />
+        <LanguageCategory last={index === stacks.length - 1 ? false : true} index={`0${index + 1}`} stack={stack} key={stack.name} />
       ))}
 
       <Projects />

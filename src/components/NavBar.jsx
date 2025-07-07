@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function NavBar() {
+export default function NavBar({ scroll }) {
   const [localTime, setLocalTime] = useState("");
   //update time
   useEffect(() => {
@@ -58,10 +58,18 @@ export default function NavBar() {
 
       {/* Nav Links */}
       <ul className="hidden md:flex flex-col items-end md:w-1/6 lg:w-1/8 flex-1 text-right invisible toBreveal">
-        <li className="text-link">home</li>
-        <li className="text-link">about</li>
-        <li className="text-link">project</li>
-        <li className="text-link">contact</li>
+        <li className="text-link" onClick={() => scroll(".homePage")}>
+          home
+        </li>
+        <li className="text-link" onClick={() => scroll(".test")}>
+          about
+        </li>
+        <li className="text-link" onClick={() => scroll(".test2")}>
+          project
+        </li>
+        <li className="text-link" onClick={() => scroll(".contact")}>
+          contact
+        </li>
       </ul>
     </nav>
   );
