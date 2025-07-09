@@ -84,10 +84,15 @@ function App() {
                       ease: "power2.out",
                       stagger: 0.1,
                       onComplete: () => {
+                        const temp = document.getElementById("temp");
                         // document.querySelector(".homePage").appendChild(nameRef.current);
+
                         nameRef.current.classList.remove("absolute", "left-1/2", "top-1/2", "-translate-x-1/2", "-translate-y-1/2", "items-end", "h-fit");
+                        temp.classList.add("items-center");
+
                         nameRef.current.classList.add("items-center", "h-full");
                         const newState = Flip.getState(nameRef.current);
+
                         navRef.current.style.display = "block";
                         navRef.current.querySelector(".originalContainer").appendChild(nameRef.current);
 
@@ -106,7 +111,6 @@ function App() {
                             gsap.to(".visnuStatue", { scale: 1 });
                           },
                           onStart: () => {
-                            const temp = document.getElementById("temp");
                             temp.remove();
 
                             let text = SplitText.create(".toBreveal", { type: "lines", mask: "lines" });
@@ -174,7 +178,7 @@ function App() {
             </header>
             <div className="flex justify-center h-full w-full relative" id="temp">
               <HanumanSvg hanumanRef={hanumanRef} />
-              <div className="hidden h-1/12 md:h-fit w-full p-2.5 items-end absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white" ref={nameRef}>
+              <div className="hidden h-1/12 md:h-fit w-full p-2.5 items-end absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white " ref={nameRef}>
                 <img src="./image/name/p.png" alt="" className="w-1/6 order-1 opacity-0 letter " />
                 <img src="./image/name/s.png" alt="" className="w-1/6 order-3 opacity-0 letter " />
                 <img src="./image/name/e.png" alt="" className="w-1/6 order-4 opacity-0 letter " />
@@ -190,10 +194,10 @@ function App() {
               <div className="flex-col flex lg:flex-row grow lg:justify-evenly justify-center items-center lg:items-stretch landingContentWrapper md:flex-col-reverse">
                 <div className="lg:w-1/2 w-full">
                   <br className="hidden lg:block" />
-                  <p className="font-secondary lg:text-[1.5vw] uppercase invisible toBreveal p-2.5 lg:self-start md:w-10/12 lg:w-full">I design and develop modern, high-performing websites with care and commitment. Each project reflects my dedication to clean code and seamless UX. Your vision is the blueprint, and I bring it to life with precision.</p>
+                  <p className="font-secondary lg:text-[1.5vw] uppercase invisible toBreveal p-2.5 lg:self-start md:w-10/12 lg:w-full font-medium">I design and develop modern, high-performing websites with care and commitment. Each project reflects my dedication to clean code and seamless UX. Your vision is the blueprint, and I bring it to life with precision.</p>
                 </div>
                 <div className="lg:w-1/6 w-full absolute lg:static h-[80vh] lg:h-auto md:z-99 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:translate-0">
-                  <img src="./image/visnu.png" alt="Visnu Statue" className="object-contain w-full h-full visnuStatue lg:scale-100" />
+                  <img src="./image/visnu.png" alt="Visnu Statue" className="object-contain w-full h-full visnuStatue scale-0" />
                 </div>
                 <div className="w-fit absolute z-50 left-1/2 top-3/5 translate-x-[-50%] translate-y-[-50%] text-[15vw]/[1.1] md:hidden">
                   <p className='font-["Luxurious_Script"] text-right'>web</p>

@@ -60,7 +60,7 @@ export default function TiltedCard({ imageSrc, altText = "Tilted card image", ca
   return (
     <figure
       ref={ref}
-      className="relative w-full h-full [perspective:800px] flex flex-col items-center justify-center cursor-[url('./cursor/cursor.svg'),_auto]"
+      className="relative w-full h-full [perspective:800px] flex flex-col items-center justify-center cursor-[url('/cursor/cursor.svg'),_auto]"
       style={{
         height: containerHeight,
         width: containerWidth,
