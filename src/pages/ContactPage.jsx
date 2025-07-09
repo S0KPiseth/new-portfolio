@@ -93,8 +93,8 @@ export default function ContactPage() {
           <p className="contactText">+855(0)967317303</p>
         </div>
         <div className="w-1/3">
-          <p className=" font-bold text-black/50 contactText">Address</p>
-          <p className="lg:w-1/2 contactText">Mlop Por Thmey Community Sangkat Kouk Roka Khan Prek Pnov Phnom Penh, 121104</p>
+          <p className=" font-bold text-black/50 contactText">Based in</p>
+          <p className="lg:w-1/2 contactText text-nowrap">Phnom Penh, Cambodia</p>
         </div>
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Hire me</p>
