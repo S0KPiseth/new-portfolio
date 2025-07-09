@@ -12,15 +12,16 @@ export default function ContactPage() {
   useGSAP(() => {
     gsap.to("#circle", {
       scrollTrigger: {
-        trigger: ".contact",
+        trigger: ".lastProjectSection",
         scrub: true,
-        pin: ".test2",
-        start: "top bottom",
-        end: "bottom bottom",
+        pin: true,
+        start: "top top",
+        end: "+=100%",
         pinSpacing: false,
       },
       backgroundImage: "radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 0%)",
     });
+
     gsap.to("#circle", {
       scrollTrigger: {
         trigger: ".contact",
@@ -81,7 +82,7 @@ export default function ContactPage() {
     ScrollTrigger.refresh();
   }, []);
   return (
-    <section className="h-screen w-screen contact text-black relative flex flex-col justify-evenly font-medium ">
+    <section className="max-h-screen h-screen w-screen contact text-black relative flex flex-col justify-evenly font-medium ">
       <div className="grow">
         <p className="md:text-8xl text-center font-bold connectHeader text-7xl">LET'S CONNECT</p>
       </div>

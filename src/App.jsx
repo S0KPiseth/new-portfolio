@@ -186,25 +186,25 @@ function App() {
               </p>
             </div>
 
-            <div className="flex-col justify-evenly relative hidden landingElements z-10 max-h-screen">
+            <div className="flex-col justify-evenly hidden landingElements z-10 max-h-screen">
               <div className="flex-col flex lg:flex-row grow lg:justify-evenly justify-center items-center lg:items-stretch landingContentWrapper md:flex-col-reverse">
                 <div className="lg:w-1/2 w-full">
                   <br className="hidden lg:block" />
                   <p className="font-secondary lg:text-[1.5vw] uppercase invisible toBreveal p-2.5 lg:self-start md:w-10/12 lg:w-full">I design and develop modern, high-performing websites with care and commitment. Each project reflects my dedication to clean code and seamless UX. Your vision is the blueprint, and I bring it to life with precision.</p>
                 </div>
-                <div className="lg:w-1/6 absolute top-30 lg:static h-[70vh] lg:h-auto md:z-99 md:top-0">
-                  <img src="./image/visnu.png" alt="Visnu Statue" className="lg:w-full h-full visnuStatue scale-0" />
-                  <div className="w-full absolute z-50 left-[50%] top-[70%] translate-x-[-50%] translate-y-[-50%] text-[15vw] md:hidden">
-                    <p className='font-["Luxurious_Script"] text-right'>web</p>
-                    <p className="font-secondary font-medium">developer</p>
-                    <br />
-                  </div>
+                <div className="lg:w-1/6 w-full absolute lg:static h-[80vh] lg:h-auto md:z-99 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:translate-0">
+                  <img src="./image/visnu.png" alt="Visnu Statue" className="object-contain w-full h-full visnuStatue lg:scale-100" />
                 </div>
-                <div className="md:flex grow lg:w-1/2 lg:text-[9vw]/27 self-center hidden md:text-[15vw]/25 md:self-start lg:self-center">
+                <div className="w-fit absolute z-50 left-1/2 top-3/5 translate-x-[-50%] translate-y-[-50%] text-[15vw]/[1.1] md:hidden">
+                  <p className='font-["Luxurious_Script"] text-right'>web</p>
+                  <p className="font-secondary font-medium">developer</p>
+                  <br className="hidden lg:block" />{" "}
+                </div>
+                <div className="md:flex grow lg:w-1/2 lg:text-[9vw]/[1.1] self-center hidden md:text-[15vw]/25 md:self-start lg:self-center">
                   <div className="h-fit place-items-center lg:place-items-center md:place-items-start md:p-2.5 lg:p-0">
                     <p className='font-["Luxurious_Script"] invisible toBreveal'>web</p>
                     <p className="font-secondary invisible toBreveal font-medium">developer</p>
-                    <br />
+                    <br className="hidden lg:block" />
                   </div>
                 </div>
               </div>

@@ -95,7 +95,6 @@ export default function AboutPage() {
       x: -100,
       ease: "none",
     });
-    gsap.set("body", { scrollTrigger: { trigger: ".test", start: "top bottom", toggleActions: "restart none start none" }, background: "transparent" });
   }, []);
 
   return (
