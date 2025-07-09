@@ -103,7 +103,7 @@ export default function AboutPage() {
         <p className="lg:text-[2.5vw] text-xl md:text-4xl leading-[1.1] aboutParagraph font-semibold w-full lg:w-11/12 text-center p-1.5 lg:p-0">Hi, I’m Seth. I’m a full stack developer who enjoys creating clean, functional, and user-friendly web apps. I like working across the stack — from crafting UI to setting up servers — and I’m always looking for new things to build and learn along the way.</p>
         <br />
         <div className="profileCard opacity-100">
-          <TiltedCard imageSrc="./image/pexels-photo-29494962.webp" altText="Piseth Sok - Ace" captionText="Piseth Sok - Ace" containerHeight="350px" containerWidth="350px" imageHeight="350px" imageWidth="350px" rotateAmplitude={12} scaleOnHover={1.1} showMobileWarning={false} showTooltip={true} displayOverlayContent={true} overlayContent={<p className="capitalize text-white tracking-[-0.5px] bg-[#0006] rounded-[15px] m-8 px-4 py-2 font-figtree font-black shadow-[0_5px_30px_#06001059]">Piseth Sok - Ace</p>} />
+          <TiltedCard imageSrc="./image/me.png" altText="Piseth Sok - Ace" captionText="Piseth Sok - Ace" containerHeight="350px" containerWidth="350px" imageHeight="350px" imageWidth="350px" rotateAmplitude={12} scaleOnHover={1.1} showMobileWarning={false} showTooltip={true} displayOverlayContent={true} overlayContent={<p className="capitalize text-white tracking-[-0.5px] bg-[#0006] rounded-[15px] m-8 px-4 py-2 font-figtree font-black shadow-[0_5px_30px_#06001059]">Piseth Sok - Ace</p>} />
         </div>
       </div>
       <br />

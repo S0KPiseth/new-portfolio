@@ -40,9 +40,9 @@ export default function ContactPage() {
       },
     });
     document.fonts.ready.then(() => {
-      const contactText = SplitText.create(".contactText", { type: "words", mask: "lines" });
+      const contactText = SplitText.create(".contactText", { type: "chars", smartWrap: true });
       const connectHeader = SplitText.create(".connectHeader", { type: "chars" });
-      gsap.from(contactText.words, { scrollTrigger: { trigger: ".borderLines1", start: "top bottom", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.01, autoAlpha: 0 });
+      gsap.from(contactText.chars, { scrollTrigger: { trigger: ".borderLines1", start: "top bottom", toggleActions: "restart none none none" }, yPercent: 50, stagger: 0.003, autoAlpha: 0 });
       gsap.from(connectHeader.chars, {
         yPercent: 50,
         autoAlpha: 0,
@@ -84,7 +84,7 @@ export default function ContactPage() {
   return (
     <section className="max-h-screen h-screen w-screen contact text-black relative flex flex-col justify-evenly font-medium ">
       <div className="grow">
-        <p className="md:text-8xl text-center font-bold connectHeader text-7xl">LET'S CONNECT</p>
+        <p className="md:text-8xl text-center font-bold connectHeader text-7xl">LET'S&nbsp;CONNECT</p>
       </div>
       <div className="flex md:p-2.5 p-1 border-t-1 border-black font-bold md:text-2xl text-[2vw] borderLines borderLines1 gap-x-1.5">
         <div className="w-1/3">
@@ -98,7 +98,7 @@ export default function ContactPage() {
         </div>
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Hire me</p>
-          <p className="contactText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+          <p className="contactText">I’m a aspiring full-stack developer with hands-on experience building personal projects using React, Node.js, Express, MongoDB, and SQL. I focus on creating responsive interfaces and integrating RESTful APIs, and I’m excited to apply my skills and grow within a professional team.</p>
         </div>
       </div>
       <div className="flex md:p-2.5 p-1  font-bold border-t-1 border-black  md:text-2xl text-[2vw] borderLines">
