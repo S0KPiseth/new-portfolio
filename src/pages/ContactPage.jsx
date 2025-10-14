@@ -89,7 +89,7 @@ export default function ContactPage() {
       <div className="flex md:p-2.5 p-1 border-t-1 border-black font-bold md:text-2xl text-[2vw] borderLines borderLines1 gap-x-1.5">
         <div className="w-1/3">
           <p className=" font-bold text-black/50 contactText">Email & Phone</p>
-          <p className="contactText">piseth.sok.div@gmail.com</p>
+          <p className="contactText">piseth.sok.dev@gmail.com</p>
           <p className="contactText">+855(0)967317303</p>
         </div>
         <div className="w-1/3">
