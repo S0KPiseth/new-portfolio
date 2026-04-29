@@ -75,6 +75,14 @@ export const projectWPic = [
         link:"https://s0kpiseth.github.io/AlphaKeys/"
 
     },
+    {
+        name:"YUMYUM",
+        field:["Front-end"],
+        year:2025,
+        image:"./image/mockups/yumyumMockup.png",
+        link:"https://github.com/S0KPiseth/YumYum/"
+
+    },
 ]
 export const projectNoPic = [
     {
