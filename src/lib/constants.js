@@ -79,7 +79,7 @@ export const projectWPic = [
         name:"YUMYUM",
         field:["Front-end"],
         year:2025,
-        image:"./image/mockups/yumyumMockup.png",
+        image:"./image/mockups/yumyumMockup.jpg",
         link:"https://github.com/S0KPiseth/YumYum/"
 
     },
